@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/comun.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+            </div>
+        </nav>-->
+
+    <div class="img-fondo">
+        <img src="../assets/images/fondo.jpg"></img>
+    </div>
+    <div class="alert" id="divNotify" style="position: absolute;width: 100%;text-align: center;">Usuario Correctamente registrado</div>
+
+    <div class="container-login">
+        <div class="div-login">
+            <div class="div-login-header">Login</div>
+            <div class="div-login-body">
+                <form method="POST" action="autent.php">
+                    <div class="div-input">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-login" id="usuamail" name="usuamail" placeholder="Escriba su usuario">
+                            <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="div-input">
+                        <div class="input-group">
+                            <input type="password" class="form-control input-login" id="usuapass" name="usuapass" placeholder="Escriba su contraseña">
+                            <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-asterisk"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="div-input text-center">
+                        <a class="btn btn-warning" href="register.html">Registrarse</a>
+                        <button type="submit" class="btn btn-success">Ingresar</button>
+
+                    </div>
+
+                    <!--<div class="div-input text-center">
+                        <div class="col-sm-12">
+                            <span class="div-logos">
+                                    <span>
+                                        <i class="fab fa-facebook-f texto-20 blanco"></i>
+                                    </span>
+                            </span>
+                            <span class="div-logos">
+                                    <span >
+                                        <i class="fab fa-google-plus texto-20 blanco"></i>
+                                    </span>
+                            </span>
+        
+        
+                        </div>
+                    </div>-->
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="../assets/js/jquery-3.3.1.js"></script>
+    <script>
+        var url = $(location).attr('href');
+        var estado = url.split('=');
+        estado = estado[1];
+        if (estado == 1) {
+            $('#divNotify').addClass('alert-success');
+            $('#divNotify').removeClass('alert-danger');
+            $('#divNotify').text('Usuario Correctamente registrado');
+        } else if (estado == 2) {
+            $('#divNotify').removeClass('alert-success');
+            $('#divNotify').addClass('alert-danger');
+            $('#divNotify').text('Usuario y/o Contraseña Incorrectos');
+        } else {
+            $('#divNotify').hide();
+        }
+        // alert(estado);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/comun.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../node_modules/datetimepicker/dist/DateTimePicker.css">
+
+
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!--<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+            </div>
+        </nav>-->
+
+    <div class="img-fondo">
+        <img src="../assets/images/fondo.jpg"></img>
+    </div>
+
+    <div class="container-login">
+        <div class="div-register">
+            <div class="div-register-header">Registrarse</div>
+            <div class="div-login-body">
+                <form method="POST" action="register.php">
+                    <div class="div-input">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control input-login required" id="usuanomb" name="usuanomb" placeholder="Escriba sus nombres">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control input-login required" id="usuaapel" name="usuaapel" placeholder="Escriba sus apellidos">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="div-input">
+                        <input type="text" class="form-control input-login required" id="usuaiden" name="usuaiden" placeholder="Escriba su número de identificación">
+                    </div>
+
+                    <div class="div-input">
+                        <input type="date" readonly class="form-control input-login required" id="usuafena" name="usuafena" placeholder="Fecha de nacimiento">
+                        <div id="dtBox"></div>
+                    </div>
+
+                    <div class="div-input">
+                        <input type="email" class="form-control input-login required" id="usuamail" name="usuamail" placeholder="Escriba su correo">
+                    </div>
+
+                    <div class="div-input">
+                        <select id="usuagene" name="usuagene" class="form-control input-login required">
+                            <option value="" selected>Seleccione el genero</option>
+                            <option value="0">Masculino</option>
+                            <option value="1">Femenino</option>
+                        </select>
+                    </div>
+
+                    <div class="div-input">
+                        <input type="password" class="form-control input-login required" id="usuapass" name="usuapass" placeholder="Escriba su contraseña">
+                    </div>
+
+                    <div class="div-input text-center">
+                        <a class="btn btn-success" href="login.html">Entrar</a>
+                        <button type="button" class="btn btn-warning" id="btnRegistrar">Registrarse</button>
+
+                    </div>
+
+                    <!--<div class="div-input text-center">
+                        <div class="col-sm-12">
+                            <span class="div-logos">
+                                    <span>
+                                        <i class="fab fa-facebook-f texto-20 blanco"></i>
+                                    </span>
+                            </span>
+                            <span class="div-logos">
+                                    <span >
+                                        <i class="fab fa-google-plus texto-20 blanco"></i>
+                                    </span>
+                            </span>
+        
+        
+                        </div>
+                    </div>-->
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../assets/js/jquery-3.3.1.js"></script>
+    <script src="../node_modules/datetimepicker/dist/DateTimePicker.js"></script>
+    <script src="../node_modules/datetimepicker/dist/i18n/DateTimePicker-i18n.js"></script>
+    <script src="../node_modules/datetimepicker/dist/i18n/DateTimePicker-i18n-de.js"></script>
+    <script>
+        $("#dtBox").DateTimePicker({
+            language: "es",
+        });
+
+        $('#btnRegistrar').on('click', function() {
+            var i = 0;
+            var formulario = $(this).parents('form');
+            console.log(formulario[0]);
+            $.each(formulario[0], function(ind, val) {
+
+                var espacio = val.className.split(' ');
+                var required = $.inArray('required', espacio);
+                if (required > 1 && !val.value) {
+                    i++;
+                    $(this).css('border', '1px solid red');
+                    $(this).attr('placeholder', 'Este campo no puede estar vacio');
+                    //alert('Este campo no puede estar vacio');
+                    console.log(required);
+                }
+
+                //i++;
+            });
+
+            if (i == 0) {
+                formulario.trigger('submit');
+            }
+
+        });
+    </script>
+</body>
+
+</html>
