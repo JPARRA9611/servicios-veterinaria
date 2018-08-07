@@ -25,6 +25,20 @@
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
 </head>
 <body>
+    <div class="div-menu">
+        <div class="menu">
+        <ul>
+            <?php
+                foreach ($menu as $key => $value) {
+                    echo '<li class="menu-li">
+                            <a href="'.$value['menulink'].'">'.$value['menunomb'].'</a>
+                        </li><hr>
+                        ';
+                }
+            ?>
+        </ul>
+        </div>
+    </div>
     <!--Header Menu-->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -38,26 +52,11 @@
             </div>
             
             <div class="collapse navbar-collapse" id="menu">
-                <?php
-                    foreach ($menu as $key => $value) {
-                        echo '<ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="'.$value['menulink'].'">'.$value['menunomb'].'
-                                    <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Liga MX</a></li>
-                                        <li><a href="#">Ascenso MX</a></li>
-                                        <li><a href="#">Copa MX</a></li> 
-                                    </ul>
-                                </li>
-                            </ul> ';
-                    }
                 
-                ?>
                 
     
                 <ul class="nav navbar-nav navbar-right">
-                    
+                    <li id="btn-menu"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-list"></span> Menu</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>
                 </ul>
             </div>    
@@ -75,7 +74,6 @@
         <div class="div-text">
             <div class="back-white">
                 <div class="div-item">
-                    <div class="div-details"></div>
                     <div class="div-section"></div>
                 </div>
             
@@ -135,5 +133,6 @@
     
     <script src="../assets/js/jquery-3.3.1.js"></script>
     <script src='../assets/bootstrap/js/bootstrap.min.js'></script>
+    <script src='../assets/js/comun.js'></script>
 </body>
 </html>
