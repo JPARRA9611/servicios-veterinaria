@@ -1,5 +1,10 @@
 <?php 
     session_start();
+
+    if(!$_SESSION['usuanume']){
+        header('Location: login.html');
+    }
+
     include "../lib/Classes/BaseController.php";
     $bd=new BaseController();
     header('Content-Type: text/html; charset=utf-8');
@@ -10,7 +15,9 @@
         extract($usuario);
     }
 
-    $strSQL="SELECT menunomb,menulink FROM menu WHERE menuelim=0 order by menunomb DESC";
+    $raiz=$_SERVER['PHP_SELF'];
+
+    $strSQL="SELECT menunomb,menulink,menuicon FROM menu WHERE menuelim=0 order by menuord ASC";
     $menu=$bd->query($strSQL)->resultset();
 ?>
 <!DOCTYPE html>
@@ -30,9 +37,14 @@
         <ul>
             <?php
                 foreach ($menu as $key => $value) {
-                    echo '<li class="menu-li">
-                            <a href="'.$value['menulink'].'">'.$value['menunomb'].'</a>
-                        </li><hr>
+                    if($value['menulink']==$raiz){
+                        $activo=" active";
+                    }else{
+                        $activo="";
+                    }
+                    echo '<li class="menu-li '.$activo.'">
+                            <a href="'.$value['menulink'].'"><span class="'.$value['menuicon'].'"> '.$value['menunomb'].'<span></a>
+                        </li>
                         ';
                 }
             ?>
@@ -40,7 +52,7 @@
         </div>
     </div>
     <!--Header Menu-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-white navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
@@ -57,82 +69,90 @@
     
                 <ul class="nav navbar-nav navbar-right">
                     <li id="btn-menu"><a href="javascript:void(0)"><span class="glyphicon glyphicon-th-list"></span> Menu</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>
+                    <li data-toggle="modal" data-target="#modalCerrarSesion"><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>
                 </ul>
             </div>    
         </div>
     </nav>
     <!--Menu Header-->
-    
-    <div class="row">
-        <div class="img-parallax" style="background-image: url('../assets/images/img-presentacion2.jpg');">
-            <div class="caption">
-                <span class="border">Cuidados Medicos</span>
-            </div>
-        </div>
 
-        <div class="div-text">
-            <div class="back-white">
-                <div class="div-item">
-                    <div class="div-section"></div>
-                </div>
-            
-                <div class="div-item">
-                    <div class="div-section"></div>
-                </div>
-            
-                <div class="div-item">
-                    <div class="div-section"></div>
-                </div>
-            
-                <div class="div-item">
-                    <div class="div-section"></div>
-                </div>
-                <div class="div-item">
-                    <div class="div-section"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
-    
-    <!--<div class="back-white">
-        <div class="div-circle"><span class="glyphicon glyphicon-envelope icon-ind"></span></div>
-        <div class="div-circle"><span class="glyphicon glyphicon-user icon-ind"></span></div>
-        <div class="div-circle"><span class="glyphicon glyphicon-asterisk icon-ind"></span></div>
-        <div class="div-circle"><span class="glyphicon glyphicon-book icon-ind"></span></div>
-        <div class="div-circle"><span class="fas fa-at icon-ind"></span></div>
-    </div>-->
 
-    <div class="row">
-        <div class="img-parallax" style="background-image: url('../assets/images/img-presentacion1.jpg');">
-            <div class="caption">
-                <span class="border">Cuidados Medicos</span>
-            </div>
-        </div>
+    <!-- Inicia visor-->
+    <div id="div-visor"></div>
+       
 
-        <div class="div-text">
-            <h3 class="text-center">Prueba</h3>
-            
+    <div id="modalCerrarSesion" class="modal fade" role="dialog" style="padding:0px">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <form method="POST" action="logout.php">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Cerrar Sesión</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>¿Esta seguro que desea cerrar sesión?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Si</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="row">
-        <div class="img-parallax" style="background-image: url('../assets/images/img-presentacion.jpg');">
-            <div class="caption">
-                <span class="border">Cuidados Medicos</span>
-            </div>
-        </div>
+    <div class="div-footer">
+        
+            <div class="row">
+                <div class="col-sm-4 div-black">
+                    <div class="row row-informacion-footer">
+                        <div class="col-sm-6">
+                            <h1>Logo</h1>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <h1>Nombre de la empresa</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 div-black">
+                    <h1>Sobre Nosotros</h1>
+                    <p>Información sobre la actividad que realiza la empresa</p>
+                    <p>Contactanos: xxxxxxxx@gmail.com</p>
+                </div>
+                <div class="col-sm-4 div-black">
+                    <h1>Siguenos</h1>
 
-        <div class="div-text">
-            <h3 class="text-center">Prueba</h3>
-            <p></p>
-        </div>
+                    <div class="div-redes">
+                        <div>
+                            <i class="fab fa-facebook-f pointer texto-20 hov-azul"></i>
+                        </div>
+                        <div>
+                            <i class="fab fa-google-plus-g pointer texto-20 hov-rojo"></i>
+                        </div>
+                        <div>
+                            <i class="fab fa-twitter pointer texto-20 hov-celeste"></i>
+                        </div>
+                        <div>
+                            <i class="fab fa-youtube pointer texto-20 hov-rojo"></i>
+                        </div>               
+                    </div>
+                </div>
+            </div>
+            
+        
     </div>
+
+
+
+
     
     <script src="../assets/js/jquery-3.3.1.js"></script>
     <script src='../assets/bootstrap/js/bootstrap.min.js'></script>
+    <script src='../assets/js/funciones.js'></script>
     <script src='../assets/js/comun.js'></script>
 </body>
 </html>

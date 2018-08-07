@@ -196,12 +196,14 @@ body {
 
 .menu {
     width: 300px;
-    background-color: #34495e;
+    background-color: #ecf0f1;
     height: 100%;
     display: inline-block;
     position: absolute;
     z-index: 3000;
     height: 100vh;
+    box-shadow: 1px 0px 2px 3px #3498db;
+    position: fixed;
 }
 
 .menu ul {
@@ -209,21 +211,141 @@ body {
     padding: 0px;
 }
 
-.menu ul hr {
+
+/*.menu ul hr {
     margin-top: 0px !important;
     margin-bottom: 0px;
     border-top: 1px solid #eee !important;
     margin-left: 40px;
     margin-right: 40px;
-}
+}*/
 
 .menu-li {
     list-style: none;
-    padding: 37px 11px 4px 8px;
-    text-align: center;
+    padding: 21px 18px 19px 20px;
+    cursor: pointer;
+}
+
+.menu-li:hover {
+    background-color: #2980b9;
+}
+
+.menu-li:hover a {
+    color: white;
+}
+
+.menu-li.active {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.menu-li.active a {
+    color: white;
 }
 
 .menu-li a:link {
     text-decoration: none;
     color: white;
+}
+
+.navbar-white {
+    border: 1px solid #3498db;
+    background-color: white;
+    opacity: 1;
+    height: 100px;
+}
+
+.navbar-white div {
+    padding-top: 10px;
+}
+
+#modalCerrarSesion {
+    padding: 0px !important;
+}
+
+#modalCerrarSesion .modal-dialog {
+    width: 100%;
+    margin-top: 190px;
+}
+
+#modalCerrarSesion .modal-dialog .modal-content {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    opacity: 0.8;
+}
+
+#modalCerrarSesion .modal-dialog .modal-content .modal-header {
+    border: none;
+}
+
+#modalCerrarSesion .modal-dialog .modal-content .modal-footer {
+    border: none;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.div-footer {
+    width: 100vw;
+    height: 200px;
+    background-color: #34495e;
+}
+
+.div-black {
+    background-color: #34495e;
+    height: 200px;
+    color: white;
+    text-align: center;
+}
+
+.div-footer .row {
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.div-redes {
+    margin-top: 55px;
+}
+
+.div-redes div i {
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+}
+
+.div-redes div {
+    display: inline-block;
+    border: 1px solid;
+    width: 50px;
+}
+
+.hov-rojo:hover {
+    background-color: #FF0000;
+}
+
+.hov-azul:hover {
+    background-color: #3b5998;
+}
+
+.hov-celeste:hover {
+    background-color: #1da1f2;
+}
+
+.row-informacion-footer {
+    height: 100%;
+}
+
+.row-informacion-footer div {
+    height: 100%;
+}
+
+.row-informacion-footer .col-sm-1 {
+    border-left: 3px solid white;
+    height: 100%;
 }
